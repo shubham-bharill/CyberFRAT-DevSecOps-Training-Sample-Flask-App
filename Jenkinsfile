@@ -6,8 +6,18 @@ pipeline{
   }
   
   agent any 
+    
   
   stages {
+
+    stage ('secret scanning') {
+    steps { 
+      script { 
+        docker run trufflesecurity/trufflehog git https://github.com/shubham-bharill/CyberFRAT-DevSecOps-Training-Sample-Flask-App.git
+          }
+      }
+    }
+  
     stage ('Build Docker Image') {
       steps { 
         script { 

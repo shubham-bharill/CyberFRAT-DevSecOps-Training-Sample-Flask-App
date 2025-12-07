@@ -61,7 +61,7 @@ pipeline{
 
     stage ('dast') {
       steps{
-        sh 'docker run -t zaproxy/zap-stable zap-baseline.py -t 'http://build.dsy.sh:5000' || true'
+        sh "docker run -t zaproxy/zap-stable zap-baseline.py -t 'http://build.dsy.sh:5000' || true"
 
       }
     } 

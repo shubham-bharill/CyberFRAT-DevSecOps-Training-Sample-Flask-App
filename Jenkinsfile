@@ -18,6 +18,12 @@ pipeline{
           }
       }
     }
+    stage ('SAST'){
+      steps {
+        sh "rm -rf bandit.json || true"
+        sh "bandit -r -f=json . -o=bandit.json || true" 
+      }
+    }
   
     stage ('Build Docker Image') {
       steps { 

@@ -15,14 +15,15 @@ pipeline{
       script { 
         sh " docker run trufflesecurity/trufflehog git --json https://github.com/shubham-bharill/CyberFRAT-DevSecOps-Training-Sample-Flask-App.git > trufflehog.json"
         sh "cat trufflehog.json"
-        sh "cat bandit.json"
+        
           }
       }
     }
     stage ('SAST'){
       steps {
         sh "rm -rf bandit.json || true"
-        sh "bandit -r -f=json . -o=bandit.json || true" 
+        sh "bandit -r -f=json . -o=bandit.json || true"
+        sh "cat bandit.json"
       }
     }
   

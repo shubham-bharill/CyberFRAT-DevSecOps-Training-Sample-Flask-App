@@ -51,7 +51,7 @@ pipeline{
       }
 
     }
-    stage (deploy test application){
+    stage ('deploy test application'){
       steps{
         sh 'docker stop flaskr && docker rm flaskr || true'
         sh 'docker pull shubhambharill1/devsecops-cyberfrat:latest'
@@ -59,7 +59,7 @@ pipeline{
       }
     }
 
-    stage (dast) {
+    stage ('dast') {
       steps{
         sh 'docker run -t zaproxy/zap-stable zap-baseline.py -t 'http://build.dsy.sh:5000' || true'
 

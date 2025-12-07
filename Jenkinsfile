@@ -61,7 +61,7 @@ pipeline{
 
     stage ('dast') {
       steps{
-        sh sh "docker run --network host -t zaproxy/zap-stable zap-baseline.py -t 'http://localhost:5000' || true"
+        sh  "docker run --network host -t zaproxy/zap-stable zap-baseline.py -t 'http://localhost:5000' || true"
 
       }
     } 

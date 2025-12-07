@@ -54,14 +54,14 @@ pipeline{
     stage ('deploy test application'){
       steps{
         sh 'docker stop flaskr && docker rm flaskr || true'
-        sh 'docker pull shubhambharill1/devsecops-cyberfrat:latest'
-        sh 'docker run -p 5000:5000 --name flaskr shubhambharill1/devsecops-cyberfrat:latest'
+        sh "docker pull ${registry}:${BUILD_NUMBER}"
+        sh "docker run -d -p 5000:5000 --name flaskr ${registry}:${BUILD_NUMBER}"
       }
     }
 
     stage ('dast') {
       steps{
-        sh "docker run -t zaproxy/zap-stable zap-baseline.py -t 'http://build.dsy.sh:5000' || true"
+        sh "docker run -t zaproxy/zap-stable zap-baseline.py -t 'http://build.dsy.sh:5000/' || true"
 
       }
     } 
